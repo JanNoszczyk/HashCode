@@ -30,3 +30,5 @@ print ("Number of columns %s." % Number_columns)
 print ("Minimum ingredient of each type %s." % Min_ingredient)
 print ("Max number of cellls %s." % Max_cells)
 print(Numpy_array.shape)
+
+#BP was here
