@@ -16,12 +16,12 @@ Number_columns = First_line[1]
 Min_ingredient= First_line[2]
 Max_cells = First_line[3]
 
+#Remove first line
+Data_array = Data_array[1:]
 #List each character as array entry
 Data_array = [list(x) for x in Data_array]
 #Store as numpy array
 Numpy_array = np.array(Data_array)
-#Remove first line
-Numpy_array = np.delete(Numpy_array, 0, 0)
 
 #Print stuff
 print(Numpy_array)
@@ -29,3 +29,4 @@ print ("Number of rows %s." % Number_rows)
 print ("Number of columns %s." % Number_columns)
 print ("Minimum ingredient of each type %s." % Min_ingredient)
 print ("Max number of cellls %s." % Max_cells)
+print(Numpy_array.shape)
