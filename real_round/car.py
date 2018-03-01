@@ -54,7 +54,7 @@ class Ride:
     def in_time(self, start_time):
         return start_time - self.distance() < self.time_end
         
-    def finish_at(self, car_start_time, car_position)
+    def finish_at(self, car_start_time, car_position):
         arrive_time = car_start_time + distance(car_position,self.position_start)
         ride_start_time = max(arrive_time,self.time_start)
         ride_end_time = ride_start_time + distance(position_start,position_end)
@@ -77,8 +77,13 @@ class Car:
     def add_journey(self, start_time, ride):
         if ride.in_time(start_time) and not Car.is_busy():
             self.rides.append(ride)
-            self.busy_till = ride.finish_at(busy_till,rides[-1].position_end)
-
+            #if rides.length() = 0:
+            if len(rides) == 0:
+                self.busy_till = ride.finish_at(busy_till,[0,0])                
+            else:
+                self.busy_till = ride.finish_at(busy_till,rides[-1].position_end)
+    
+    #def busy_until(
             
             
     def is_busy(self, start_time, end_time):

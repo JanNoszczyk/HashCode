@@ -1,4 +1,4 @@
-from car import read
+from car import read, Car, output_cars
 from os.path import join, splitext
 import sys
 
@@ -17,3 +17,12 @@ output_path = join("output", splitext(file_name)[0]+'.txt')
 
 # reading file
 rows, columns, vehicles, rides, bonuses, steps, rides = read(input_path)
+
+cars = []
+for i in range(vehicles):
+    cars.append(Car())
+
+for i in range(len(cars)):
+    cars[i].add_journey(10, rides[i])
+
+output_cars(cars, output_path)
