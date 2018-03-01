@@ -1,17 +1,21 @@
 def read(file_path):
     # reads the file to self.piza
     with open(file_path) as f:
-        lines = f.readline()
+        lines = f.readlines()
         # Save information from first row
-        rows, columns, vehicles, rides, bonuses, steps = lines.split(' ')
+        rows, columns, vehicles, number_rides, bonuses, steps = lines[0].split(' ')
         steps = steps[:-2]
         rides = []
         content = [x.strip() for x in lines]
         for i in range(1, len(lines)):
             # TODO Needs doing line by line after line 1
-            position_start, position_end, time_start, time_end = tuple(map(int, lines[0].split(' ')))
-            rides.append(Ride(position_start, position_end, time_start, time_end))
-    return int(rows), int(columns), int(vehicles), int(rides), int(bonuses), int(steps), rides
+            print(lines[i])
+            position_start_x, position_start_y, position_end_x, position_end_y, \
+                time_start, time_end = tuple(map(int, lines[i].split(' ')))
+            rides.append(Ride((position_start_x, position_start_y), \
+                (position_end_x, position_end_y), time_start, time_end))
+    return int(rows), int(columns), int(vehicles), int(number_rides), int(bonuses), \
+              int(steps), rides
 
 
 class Ride:
