@@ -3,7 +3,6 @@ from os.path import join, splitext
 import sys
 
 # Call this file with an integer like 0 which specifies the first file in the list
-
 # Defining input and output file paths
 file_names = [
     "example.in",
