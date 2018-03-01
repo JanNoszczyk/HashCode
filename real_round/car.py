@@ -45,10 +45,8 @@ class Car:
         self.rides = []
 
     def add_journey(self, start_time, ride):
-        if ride.in_time(start_time)
-
-        self.journey.append(ride)
-        return
+        if ride.in_time(start_time) and not Car.is_busy():
+            self.journey.append(ride)
 
     def is_busy(self, start_time, end_time):
         for ride in self.rides:
