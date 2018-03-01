@@ -1,4 +1,3 @@
 from thing import Thing
 
-
-thing = Thing(1)
+thing = Thing(0)
