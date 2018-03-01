@@ -30,7 +30,7 @@ class Ride:
     def distance(self):
         return abs(self.position_start[0]-self.position_start[0]) + abs(self.position_start[1]-self.position_end[1])
 
-    def will_make_it(self, start_time):
+    def in_time(self, start_time):
         return start_time - self.distance() < self.time_end
 
 class Car:
@@ -40,8 +40,15 @@ class Car:
     def __init__(self):
         self.rides = []
 
-    def add_journey(self, ride):
-
+    def add_journey(self, start_time, ride):
+        if ride.in_time(start_time)
 
         self.journey.append(ride)
         return
+
+    def is_busy(self, start_time, end_time):
+        for ride in self.rides:
+            if start_time > ride.time_start \
+                and start_time < ride.time_end \
+                and end_time > ride.time \
+                and end_time < self.end_time:
