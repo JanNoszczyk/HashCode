@@ -13,12 +13,13 @@ class Pizza:
     output = ""
 
     def __init__(self, path):
+        # initializer
         self.path = path
         print("Reading file:", path)
         self.input = self.read(path)
 
     def read(self, file_path):
-        # Save each line as column
+        # reads the file to self.piza
         with open(file_path) as f:
             first_line = f.readline()
             # Save information from first row
@@ -29,6 +30,11 @@ class Pizza:
             self.pizza = grid
 
     def writeOutput(self, file_path):
+        """
+        Writes output
+        :param file_path:
+        :return:
+        """
         with open(file_path, mode="w") as f:
             f.write(self.output)
 
