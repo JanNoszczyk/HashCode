@@ -14,7 +14,7 @@ class Thing:
     def __init__(self, number):
         filename = self.file_names[number]
         path = join("input", filename)
-        print("Reading file: %s", path)
+        print("Reading file: ", path)
         input = self.read(path)
 
     def read(self, file_path):
