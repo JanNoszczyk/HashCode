@@ -1,24 +1,19 @@
-from os.path import join
 import numpy as np
 import sys
 
 class Pizza:
     """Class"""
-    file_names = [
-        "example.in",
-        "small.in",
-        "medium.in",
-        "big.in"
-    ]
+    path = ""
+    file_type = 0
     pizza = []
     rows = 0
     columns = 0
     min_ingredients = 0
     max_cells = 0
+    output = ""
 
-    def __init__(self, number):
-        filename = self.file_names[number]
-        path = join("input", filename)
+    def __init__(self, path):
+        self.path = path
         print("Reading file:", path)
         self.input = self.read(path)
 
