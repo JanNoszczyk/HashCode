@@ -1,3 +1,4 @@
+
 def read(file_path):
     # reads the file to self.piza
     with open(file_path) as f:
@@ -18,7 +19,7 @@ def read(file_path):
             #    (position_end_x, position_end_y), time_start, time_end))
     return int(rows), int(columns), int(vehicles), int(number_rides), int(bonuses), \
               int(steps), rides
-
+''''
 def output_cars(cars, file_path):
     with open(file_path, "w") as f:
         for car in cars:
@@ -28,7 +29,17 @@ def output_cars(cars, file_path):
                 final_list = [len(ids)] + ids
                 string = " ".join(str(final_list))
                 f.write(string+"\n")         
-              
+'''          
+def output_cars(cars, file_path):
+    with open(file_path, "w") as f:
+        for car in cars:
+            ids = []
+            for ride in car.rides:
+                ids.append(str(ride.id))
+                final_list = [str(len(ids))] + ids
+                string = " ".join(final_list)
+            f.write(string + "\n")
+                
 def distance(start_x, start_y, end_x, end_y):
     return abs(start_x-end_x) + abs(start_y-end_y)
 
@@ -42,6 +53,7 @@ class Ride:
     position_end = []
     time_start = ""
     time_end = ""
+    been_taken = False
 
     def __init__(self, position_start, position_end, time_start, time_end, id):
         self.position_start = position_start
@@ -78,11 +90,12 @@ class Car:
         self.rides = []
 
     def add_journey(self, start_time, ride):
-        print("ride added tried")
+        #print("ride added tried")
         #if ride.in_time(start_time) and not self.is_busy:
         if ride.in_time(start_time):
             self.rides.append(ride)
-            print("ride added")
+            print("ride added"+str(ride.id))
+            ride.been_taken = True
             #if rides.length() = 0:
             '''
             if len(rides) == 0:
