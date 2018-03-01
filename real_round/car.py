@@ -14,6 +14,9 @@ def read(file_path):
     return int(rows), int(columns), int(vehicles), int(rides), int(bonuses), int(steps), rides
 
 
+def distance(start_x, start_y, end_x, end_y):
+    return abs(start_x-end_x) + abs(start_y-end_y)
+
 class Ride:
     position_start = []
     position_end = []
@@ -27,12 +30,18 @@ class Ride:
     def distance(self):
         return abs(self.position_start[0]-self.position_start[0]) + abs(self.position_start[1]-self.position_end[1])
 
-
+    def will_make_it(self, start_time):
+        return start_time - self.distance() < self.time_end
 
 class Car:
     rides = []
+    start_time = []
+    done = []
     def __init__(self):
         self.rides = []
 
     def add_journey(self, ride):
+
+
         self.journey.append(ride)
+        return
