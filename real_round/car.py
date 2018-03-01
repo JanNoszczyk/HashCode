@@ -50,7 +50,10 @@ class Car:
 
     def is_busy(self, start_time, end_time):
         for ride in self.rides:
-            if start_time > ride.time_start \
-                and start_time < ride.time_end \
-                and end_time > ride.time \
-                and end_time < self.end_time:
+            if (start_time > ride.time_start \
+                and start_time < ride.time_end) \
+                or (end_time > ride.time \
+                and end_time < self.end_time):
+                return True
+        return False
+
