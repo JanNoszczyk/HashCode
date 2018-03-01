@@ -26,7 +26,7 @@ def output_cars(cars, file_path):
             for ride in car.rides:
                 ids.append(ride.id)
                 final_list = [len(ids)] + ids
-                string = " ".join(final_list)
+                string = " ".join(str(final_list))
                 f.write(string+"\n")         
               
 def distance(start_x, start_y, end_x, end_y):
@@ -60,7 +60,7 @@ class Ride:
     def finish_at(self, car_start_time, car_position):
         arrive_time = car_start_time + distance(car_position,self.position_start)
         ride_start_time = max(arrive_time,self.time_start)
-        ride_end_time = ride_start_time + distance(position_start,position_end)
+        ride_end_time = ride_start_time + distance(self.position_start,self.position_end)
         return ride_end_time
 
    
@@ -78,8 +78,11 @@ class Car:
         self.rides = []
 
     def add_journey(self, start_time, ride):
-        if ride.in_time(start_time) and not Car.is_busy:
+        print("ride added tried")
+        #if ride.in_time(start_time) and not self.is_busy:
+        if ride.in_time(start_time):
             self.rides.append(ride)
+            print("ride added")
             #if rides.length() = 0:
             '''
             if len(rides) == 0:
@@ -88,7 +91,7 @@ class Car:
                 self.busy_till = ride.finish_at(busy_till,rides[-1].position_end)
             '''
             self.busy_till = ride.finish_at(self.busy_till,self.next_position)
-            next_position = ride.end_position
+            next_position = ride.position_end
             
     #def busy_until(
             

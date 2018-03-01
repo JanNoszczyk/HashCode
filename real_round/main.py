@@ -23,6 +23,6 @@ for i in range(vehicles):
     cars.append(Car())
 
 for i in range(len(cars)):
-    cars[i].add_journey(10, rides[i])
+    cars[i].add_journey(0, rides[i])
 
 output_cars(cars, output_path)
