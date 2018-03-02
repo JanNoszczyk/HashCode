@@ -59,16 +59,18 @@ ride_count = 0
 for t in range(steps):
     #print(len(carst[t]))
     if ( t % math.ceil(steps/10) == 0):
-        print("Starting step %s, %s of %s rides so far" % (t, ride_count, number_rides))
+        print("Starting step %s, %s of %s rides so far. (%s left)" % \
+              (t, ride_count, number_rides, len(rides)))
         time.sleep(3)
     elif ( t % math.ceil(steps/100) == 0):
-        print("%s %% of steps, %s of %s rides so far" % (t/math.ceil(steps/100), ride_count, number_rides))
+        print("%s %% of steps, %s of %s rides so far. (%s left)" % \
+              (t/math.ceil(steps/100), ride_count, number_rides, len(rides)))
     for car in carst[t]:
         best_ride, score = best_ride_NR(rides, car, t, cars, inpt_numbers)
         if best_ride!="":
             #car.add_journey(t, rides[best_ride])            
             car.add_journey(t, rides.pop(best_ride))            
-            print(str(score))
+            print("score: "+str(score))
             if car.busy_till == 1:
                 print("baad")
                 time.sleep(5)

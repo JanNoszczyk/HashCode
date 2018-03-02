@@ -46,17 +46,24 @@ def best_ride_NR(rides, car, t, cars, inpt_numbers):
     #good_rides = []
     best_ride = ""
     best_scoring = -math.inf
-    for j in range(len(rides)):
+    j=0 #Manuell for loop to make j-=1 in remove possible
+    #for j in range(len(rides)):
+    while j < len(rides):
+        #print("j="+str(j))
         if rides[j].been_taken:
-            continue
+            j+=1
             print("bad: ride not removed")
             time.sleep(10)
+            continue
         if rides[j].time_end < t:
             del(rides[j])
             print("removed ride %s" %j)
+            #j-=1 done by continue
+            continue
             #time.sleep(1)            
         finish_time = rides[j].finish_at(car.busy_till, car.next_position)
         if finish_time > rides[j].time_end:
+            j+=1
             continue
         if rides[j].time_end > inpt_numbers['T']:
             print("end_time > T!!")
@@ -73,7 +80,7 @@ def best_ride_NR(rides, car, t, cars, inpt_numbers):
               dist = distance(cars[i].next_position,rides[j].position_end)
               min_dist_other_car = min(min_dist_other_car,dist)
          
-        if True:
+        if False: #needed for one score function, but slow
           min_dist_other_car = math.inf #stochastic!
           rand_idices = list(range(len(cars)))
           shuffle(rand_idices)
@@ -94,19 +101,21 @@ def best_ride_NR(rides, car, t, cars, inpt_numbers):
             print(str(finish_time)+" "+str(t)+" "+str(time_till_completion))           
             time.sleep(3)
         
-        #ride_scoring = score_gain * 1.0 / time_till_completion
+        ride_scoring = score_gain * 1.0 / time_till_completion
         #ride_scoring = (gets_bonus)*Bonus - waiting_time
         #ride_scoring = rides[j].distance + (gets_bonus)*Bonus - waiting_time
         #ride_scoring = ( score_gain * 1.0 / time_till_completion ) / \
         #    (time_till_completion + could_be_later_time)
-        ride_scoring =  score_gain / time_till_completion \
-              + 1.0/10 * min_dist_other_car / math.sqrt( \
-              inpt_numbers['Rows'] * inpt_numbers['Cols'] / min(20.0,inpt_numbers['Cars']) )
+        #ride_scoring =  score_gain / time_till_completion \
+        #      + 1.0/10 * min_dist_other_car / math.sqrt( \
+        #      inpt_numbers['Rows'] * inpt_numbers['Cols'] / min(20.0,inpt_numbers['Cars']) )
         #being far is only good if it is <distance or so
         
         if ride_scoring > best_scoring:
             best_ride = j
             best_scoring = ride_scoring
+    
+        j+=1
     #if best_ride=="":
     #    print("bad2!!")
     return best_ride, best_scoring
